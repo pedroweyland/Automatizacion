@@ -1,0 +1,14 @@
+/* Barra de progreso */
+.progress-bar {
+    -fx-accent: #4caf50;            /* Color verde de la barra que progresa */
+    -fx-control-inner-background: #3a3a3a; /* Fondo gris del track */
+    -fx-background-insets: 0;
+    -fx-padding: 3;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.progress-text {
+    -fx-text-fill: #aaaaaa;
+    -fx-font-size: 12px;
+}

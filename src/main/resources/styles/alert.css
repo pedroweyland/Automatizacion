@@ -1,0 +1,31 @@
+.dialog-pane {
+    -fx-background-color: #1e1e1e;
+    -fx-font-family: "Montserrat";
+}
+
+.dialog-pane .content.label {
+    -fx-text-fill: #cfcfcf;
+    -fx-font-size: 14px;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #2b2b2b;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+}
+
+.dialog-pane .button-bar .button {
+    -fx-background-color: #2d2d30;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: transparent;
+}
+
+.dialog-pane .button-bar .button:hover {
+    -fx-background-color: #3e3e42;
+}

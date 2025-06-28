@@ -1,0 +1,15 @@
+/* Drop zone */
+.drop-zone {
+    -fx-border-color: #3e3e42;
+    -fx-border-width: 3px;
+    -fx-border-style: dashed;
+    -fx-background-color: #2d2d30;
+    -fx-background-radius: 10;
+    -fx-padding: 30;
+    -fx-cursor: hand;
+}
+
+.drop-zone-label {
+    -fx-text-fill: #cfcfcf;
+    -fx-font-size: 12px;
+}

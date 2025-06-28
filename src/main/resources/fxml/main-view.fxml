@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ComboBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.cartadespido.automatizacion.MainController"
+            prefWidth="400" prefHeight="260" styleClass="root">
+
+    <!-- Barra superior -->
+    <top>
+        <BorderPane fx:id="titleBar" styleClass="title-bar">
+            <left>
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Automatización MiDT" styleClass="title-label"/>
+                </HBox>
+            </left>
+            <right>
+                <HBox spacing="5" alignment="CENTER_RIGHT">
+                    <Button fx:id="btnMinimize" text="—" styleClass="window-btn"/>
+                    <Button fx:id="btnClose" text="✕" styleClass="window-btn"/>
+                </HBox>
+            </right>
+        </BorderPane>
+    </top>
+
+    <!-- Contenido central -->
+    <center>
+        <VBox alignment="CENTER" spacing="20" styleClass="main-content">
+            <VBox fx:id="dropZone" alignment="CENTER" spacing="10" styleClass="drop-zone">
+                <Label text="Arrastrá o hacé clic aquí para cargar el archivo CSV" styleClass="drop-zone-label"/>
+            </VBox>
+            <HBox spacing="10" alignment="CENTER">
+                <VBox spacing="5">
+                    <Label text="Hora" />
+                    <ComboBox fx:id="horaCombo" prefWidth="80"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="Minuto" />
+                    <ComboBox fx:id="minutoCombo" prefWidth="80"/>
+                </VBox>
+            </HBox>
+
+            <Button fx:id="btnIniciar" text="Iniciar Automatización" onAction="#onIniciar"/>
+            <Button fx:id="btnProgramar" text="Programar Automatización" onAction="#onProgramar"/>
+
+            <ProgressBar fx:id="progressBar" prefWidth="300" progress="0.0"/>
+            <Label fx:id="progressText" text="" styleClass="progress-text"/>
+            <Label fx:id="statusLabel"
+                   text="Esperando archivo..."
+                   wrapText="true"
+                   maxWidth="350"
+                   alignment="CENTER"
+                   textAlignment="CENTER"/>
+        </VBox>
+    </center>
+</BorderPane>

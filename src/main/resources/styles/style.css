@@ -1,0 +1,54 @@
+.root {
+    -fx-background-color: #1e1e1e;
+    -fx-padding: 0;
+    -fx-font-family: "Montserrat";
+}
+
+/* Botones */
+.button {
+    -fx-background-color: #2d2d30;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #3e3e42;
+}
+
+.label {
+    -fx-text-fill: #cfcfcf;
+    -fx-font-size: 14px;
+    -fx-wrap-text: true;
+}
+
+.title-bar {
+    -fx-background-color: #2b2b2b;
+    -fx-padding: 8 8 8 8;
+    -fx-spacing: 10;
+}
+
+.title-label {
+    -fx-font-family: "Montserrat Bold";
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+}
+
+.window-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cccccc;
+    -fx-font-size: 12pt;
+    -fx-padding: 4 8;
+    -fx-background-radius: 5;
+}
+
+.window-btn:hover {
+    -fx-background-color: #444;
+}
+
+.main-content {
+    -fx-padding: 0 10 0 10;
+}
