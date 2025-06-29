@@ -13,7 +13,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/fxml/main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 450);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 480);
 
         scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
         scene.getStylesheets().add(getClass().getResource("/styles/progress-bar.css").toExternalForm());

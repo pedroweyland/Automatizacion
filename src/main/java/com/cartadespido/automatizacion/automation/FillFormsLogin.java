@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,9 +27,19 @@ public class FillFormsLogin {
     public WebDriver loginForm(){
         Logger.getLogger("org.openqa.selenium.devtools").setLevel(Level.OFF);
         Logger.getLogger("org.openqa.selenium.chromium.ChromiumDriver").setLevel(Level.OFF);
-        System.setProperty("webdriver.chrome.driver", "C:\\webdrivers\\chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 
-        WebDriver driver = new ChromeDriver();
+        String driverPath = new File("drivers/chromedriver.exe").getAbsolutePath();
+        System.setProperty("webdriver.chrome.driver", driverPath);
+
+        WebDriver driver = null;
+        try {
+            driver = new ChromeDriver();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error al iniciar Selenium: " + e.getMessage());
+        }
+
 
         driver.get(url);
         driver.manage().window().maximize();

@@ -54,9 +54,12 @@
             <Label fx:id="statusLabel"
                    text="Esperando archivo..."
                    wrapText="true"
-                   maxWidth="350"
+                   maxWidth="325"
+                   minHeight="60"
                    alignment="CENTER"
-                   textAlignment="CENTER"/>
+                   textAlignment="CENTER"
+                   />
+
         </VBox>
     </center>
 </BorderPane>
