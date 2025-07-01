@@ -1,6 +1,5 @@
 package com.cartadespido.automatizacion.automation;
 
-import com.cartadespido.automatizacion.model.Causales;
 import com.cartadespido.automatizacion.model.Worker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

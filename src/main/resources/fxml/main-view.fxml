@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.cartadespido.automatizacion.MainController"
-            prefWidth="400" prefHeight="260" styleClass="root">
+<BorderPane prefHeight="260" prefWidth="400" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.cartadespido.automatizacion.MainController">
 
     <!-- Barra superior -->
     <top>
         <BorderPane fx:id="titleBar" styleClass="title-bar">
             <left>
                 <HBox alignment="CENTER_LEFT">
-                    <Label text="Automatización MiDT" styleClass="title-label"/>
+                   <children>
+                       <Label styleClass="title-label" text="Automatización MiDT" />
+                   </children>
                 </HBox>
             </left>
             <right>
-                <HBox spacing="5" alignment="CENTER_RIGHT">
-                    <Button fx:id="btnMinimize" text="—" styleClass="window-btn"/>
-                    <Button fx:id="btnClose" text="✕" styleClass="window-btn"/>
+                <HBox alignment="CENTER_RIGHT" spacing="5">
+                   <children>
+                       <Button fx:id="btnMinimize" styleClass="window-btn" text="—" />
+                       <Button fx:id="btnClose" styleClass="window-btn" text="✕" />
+                   </children>
                 </HBox>
             </right>
         </BorderPane>
@@ -32,33 +29,36 @@
     <!-- Contenido central -->
     <center>
         <VBox alignment="CENTER" spacing="20" styleClass="main-content">
-            <VBox fx:id="dropZone" alignment="CENTER" spacing="10" styleClass="drop-zone">
-                <Label text="Arrastrá o hacé clic aquí para cargar el archivo CSV" styleClass="drop-zone-label"/>
-            </VBox>
-            <HBox spacing="10" alignment="CENTER">
-                <VBox spacing="5">
-                    <Label text="Hora" />
-                    <ComboBox fx:id="horaCombo" prefWidth="80"/>
-                </VBox>
-                <VBox spacing="5">
-                    <Label text="Minuto" />
-                    <ComboBox fx:id="minutoCombo" prefWidth="80"/>
-                </VBox>
-            </HBox>
-
-            <Button fx:id="btnIniciar" text="Iniciar Automatización" onAction="#onIniciar"/>
-            <Button fx:id="btnProgramar" text="Programar Automatización" onAction="#onProgramar"/>
-
-            <ProgressBar fx:id="progressBar" prefWidth="300" progress="0.0"/>
-            <Label fx:id="progressText" text="" styleClass="progress-text"/>
-            <Label fx:id="statusLabel"
-                   text="Esperando archivo..."
-                   wrapText="true"
-                   maxWidth="325"
-                   minHeight="60"
-                   alignment="CENTER"
-                   textAlignment="CENTER"
-                   />
+           <children>
+               <VBox fx:id="dropZone" alignment="CENTER" styleClass="drop-zone">
+                  <children>
+                      <Label styleClass="drop-zone-label" text="Arrastrá o hacé clic aquí para cargar el archivo CSV" />
+                  </children>
+               </VBox>
+               <HBox alignment="CENTER" spacing="10">
+                  <children>
+                      <VBox spacing="5">
+                         <children>
+                             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="82.0" text="Hora" />
+                             <ComboBox fx:id="horaCombo" prefWidth="80" />
+                         </children>
+                      </VBox>
+                      <VBox spacing="5">
+                         <children>
+                             <Label alignment="CENTER" prefHeight="17.0" prefWidth="79.0" text="Minuto" />
+                             <ComboBox fx:id="minutoCombo" prefWidth="80" />
+                         </children>
+                      </VBox>
+                  </children>
+               </HBox>
+   
+               <Button fx:id="btnIniciar" onAction="#onIniciar" text="Iniciar Automatización" />
+               <Button fx:id="btnProgramar" onAction="#onProgramar" text="Programar Automatización" />
+   
+               <ProgressBar fx:id="progressBar" prefWidth="300" progress="0.0" />
+               <Label fx:id="progressText" styleClass="progress-text" text="" />
+               <Label fx:id="statusLabel" alignment="CENTER" maxWidth="325" minHeight="60" text="Esperando archivo..." textAlignment="CENTER" wrapText="true" />
+           </children>
 
         </VBox>
     </center>

@@ -27,19 +27,12 @@ public class FillFormsLogin {
     public WebDriver loginForm(){
         Logger.getLogger("org.openqa.selenium.devtools").setLevel(Level.OFF);
         Logger.getLogger("org.openqa.selenium.chromium.ChromiumDriver").setLevel(Level.OFF);
-        //System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 
-        String driverPath = new File("drivers/chromedriver.exe").getAbsolutePath();
-        System.setProperty("webdriver.chrome.driver", driverPath);
+        //String driverPath = new File("drivers/chromedriver.exe").getAbsolutePath();
+        //System.setProperty("webdriver.chrome.driver", driverPath);
 
-        WebDriver driver = null;
-        try {
-            driver = new ChromeDriver();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error al iniciar Selenium: " + e.getMessage());
-        }
-
+        WebDriver driver = new ChromeDriver();
 
         driver.get(url);
         driver.manage().window().maximize();

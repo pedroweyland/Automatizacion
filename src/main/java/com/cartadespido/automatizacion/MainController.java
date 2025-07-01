@@ -80,9 +80,9 @@ public class MainController {
         });
 
         for (int i = 0; i < 24; i++) horaCombo.getItems().add(i);
-        for (int i = 0; i < 60; i++) minutoCombo.getItems().add(i); // De a 5 minutos
+        for (int i = 0; i < 60; i++) minutoCombo.getItems().add(i);
         horaCombo.setValue(LocalTime.now().getHour());
-        minutoCombo.setValue(0);
+        minutoCombo.setValue(LocalTime.now().getMinute());
     }
 
     private void abrirFileChooser() {
