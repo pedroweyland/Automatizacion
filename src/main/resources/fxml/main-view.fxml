@@ -62,4 +62,12 @@
 
         </VBox>
     </center>
+    <bottom>
+        <VBox fx:id="bottomBox" alignment="CENTER" spacing="10" styleClass="bottom-container">
+            <children>
+                <Button fx:id="btnDescargar" onAction="#onDescargar" styleClass="descargar-btn window-btn" text="Descargar Output" />
+            </children>
+        </VBox>
+    </bottom>
+
 </BorderPane>

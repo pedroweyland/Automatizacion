@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Worker {
 
+    private Status status;
     //Data Workers
-    private Long RutTrab;
     private Long RutEmpleador;
+    private Long RutTrab;
     private String Nom;
     private String ApePat;
     private String ApeMat;
