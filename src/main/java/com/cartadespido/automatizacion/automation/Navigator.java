@@ -1,9 +1,6 @@
 package com.cartadespido.automatizacion.automation;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,15 +13,15 @@ public class Navigator {
 
     public WebDriver navToForm(WebDriver driver, Long rutEmpleador) {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 
         try {
 
-            empleadorNav(wait, rutEmpleador);
-            safeSleep(1);
+            empleadorNav(driver,wait, rutEmpleador);
+            safeSleep(2);
 
             cartaNav(wait);
-            safeSleep(1);
+            safeSleep(2);
 
             driver = cartaAviso(driver, wait);
 
@@ -41,7 +38,7 @@ public class Navigator {
         return driver;
     }
 
-    private void empleadorNav(WebDriverWait wait, Long rutEmpleador) {
+    private void empleadorNav(WebDriver driver, WebDriverWait wait, Long rutEmpleador) {
         WebElement empleadorPersonaButtom, empleadorButtom, empresaButton;
 
         empleadorButtom = wait.until(ExpectedConditions.elementToBeClickable(By.id("btn-empleador")));
@@ -52,13 +49,15 @@ public class Navigator {
         ));
         empleadorPersonaButtom.click();
 
+        safeSleep(4);
         String rutConGuion = formatearRutConGuion(rutEmpleador);
 
         String xpath = String.format("//button[@class='ui basic button' and contains(text(),'%s')]", rutConGuion);
 
         try {
             empresaButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
-            empresaButton.click();
+            //empresaButton.click();
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", empresaButton);
         } catch (TimeoutException e) {
             System.out.println("No se encontro el rut del empleador: " + rutConGuion);
             throw new IllegalArgumentException("No se encontro la empresa con el RUT " + rutConGuion + " en la página. Verificá si es correcto.");
@@ -74,6 +73,8 @@ public class Navigator {
 
         ));
         contratosButtom.click();
+
+        safeSleep(2);
 
         cartaDespidoButtom = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//span[@class='clickable-text' and contains(., 'Carta electrónica de aviso de despido')]")

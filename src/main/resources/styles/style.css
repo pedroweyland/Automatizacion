@@ -52,3 +52,7 @@
 .main-content {
     -fx-padding: 0 10 0 10;
 }
+
+.bottom-container {
+    -fx-padding: 0 0 20 0; /* 20px de espacio abajo */
+}

@@ -1,9 +1,6 @@
 package com.cartadespido.automatizacion.repository;
 
-import com.cartadespido.automatizacion.model.Causales;
-import com.cartadespido.automatizacion.model.Comunas;
-import com.cartadespido.automatizacion.model.Nacionalidades;
-import com.cartadespido.automatizacion.model.Worker;
+import com.cartadespido.automatizacion.model.*;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 
@@ -11,34 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class CsvReader {
-
-    public static <T> List<T> readCsv(String pathCsv, Function<String[], T> mapper) {
-        List<T> result = new ArrayList<>();
-
-        try (CSVReader reader = new CSVReader(new FileReader(pathCsv))) {
-            List<String[]> rows = reader.readAll();
-            boolean isHeader = true;
-
-            for (String[] row : rows) {
-                if (isHeader) {
-                    isHeader = false;
-                    continue;
-                }
-
-                T obj = mapper.apply(row);
-                result.add(obj);
-            }
-
-        } catch (IOException | CsvException e) {
-            System.out.println("Error reading CSV: " + e.getMessage());
-        }
-
-        return result;
-    }
-
 
     public List<Worker> leerDesdeCsvWorkers(String pathCsv) {
         List<Worker> workers = new ArrayList<>();
@@ -54,7 +25,7 @@ public class CsvReader {
                 }
 
                 Worker worker = buildWorker(fila);
-                System.out.println(worker.getOfi());
+
                 workers.add(worker);
             }
 
@@ -69,7 +40,7 @@ public class CsvReader {
     }
 
     private Worker buildWorker(String[] row) {
-        Long rutTrab = Long.parseLong(row[0]);
+        Long rutTrab = validateLongData(row[1], "Rut trabajador");
         String comuna = row[6];
         String nac = row[8];
         String causal = row[14];
@@ -93,29 +64,59 @@ public class CsvReader {
         }
     }
 
+    private Long validateLongData(String data, String message) {
+        try {
+            return Long.parseLong(data);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("En la columna " + message + " no es un numero: " + data);
+        }
+    }
+
+    private Integer validateIntegerData(String data, String message) {
+        try {
+            return Integer.parseInt(data);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("En la columna " + message + " no es un numero: " + data);
+        }
+    }
+
+    private Integer validateSexo(String sexoStr) {
+        try {
+            Integer sexo = Integer.parseInt(sexoStr);
+
+            if (sexo != 1 && sexo != 2) {
+                throw new IllegalArgumentException("En la columna Sexo admite solo 1 y 2, usted puso: " + sexoStr);
+            }
+
+            return sexo;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("En la columna Sexo no es un numero: " + sexoStr);
+        }
+    }
+
     private Worker mapToWorker(String[] row) {
         return Worker.builder()
-                .RutTrab(Long.parseLong(row[0]))
-                .RutEmpleador(Long.parseLong(row[1]))
+                .status(Status.PENDIENTE)
+                .RutEmpleador(validateLongData(row[0], "Rut empleador"))
+                .RutTrab(validateLongData(row[1], "Rut trabajador"))
                 .Nom(row[2])
                 .ApePat(row[3])
                 .ApeMat(row[4])
                 .SelDom(row[5])
-                .CodCom(Integer.parseInt(row[6]))
-                .Sex(Integer.parseInt(row[7]))
-                .Nac(Integer.parseInt(row[8]))
-                .Forma(Integer.parseInt(row[9]))
+                .CodCom(validateIntegerData(row[6], "Codigo Comuna"))
+                .Sex(validateSexo(row[7]))
+                .Nac(validateIntegerData(row[8], "Nacionalidad"))
+                .Forma(validateIntegerData(row[9], "Forma"))
                 .FecIniCon(row[10])
                 .FecTerCon(row[11])
                 .FecComDes(row[12])
                 .Ofi(row[13])
                 .Causal(row[14])
                 .Motivo(row[15])
-                .AnoSer(Long.parseLong(row[16]))
-                .Aviso(Long.parseLong(row[17]))
+                .AnoSer(validateLongData(row[16], "Anio de Servicio"))
+                .Aviso(validateLongData(row[17], "Aviso Previo"))
                 .Prev(row[18])
-                .Doc(Integer.parseInt(row[19]))
+                .Doc(validateIntegerData(row[19], "Pago previsional"))
                 .build();
     }
-
 }
